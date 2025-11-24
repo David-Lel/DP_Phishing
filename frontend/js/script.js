@@ -1,5 +1,42 @@
 document.addEventListener("DOMContentLoaded", () => {
     
+// =======================================================
+    // ZAČÁTEK TESTOVACÍHO KÓDU PRO API
+    // =======================================================
+    async function testApiConnection() {
+        console.log("Pokouším se připojit k backendu na http://localhost:5000/api/test");
+        try {
+            const response = await fetch('http://localhost:5000/api/test');
+            
+            // Zkontrolujeme, jestli server odpověděl OK (status 200)
+            if (!response.ok) {
+                throw new Error(`Chyba sítě: ${response.status}`);
+            }
+
+            const data = await response.json();
+            
+            // Pokud se vše povedlo, vypíšeme zprávu z backendu do konzole
+            console.log("ÚSPĚCH!", data.message);
+
+        } catch (error) {
+            // Pokud se spojení nepovedlo (např. backend neběží)
+            console.error("CHYBA PŘIPOJENÍ K API:", error);
+            console.error("Ujisti se, že backend server (python app.py) běží!");
+        }
+    }
+
+    // Zavoláme naši testovací funkci hned po načtení stránky
+    testApiConnection();
+    // =======================================================
+    // KONEC TESTOVACÍHO KÓDU PRO API
+    // =======================================================
+
+
+
+
+
+
+
     // --- Ovládání Sidebaru (Hamburger menu) ---
     const menuBtn = document.getElementById('menu-btn');
     const closeBtn = document.getElementById('close-btn');
