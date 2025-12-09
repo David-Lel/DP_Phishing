@@ -73,11 +73,11 @@ document.addEventListener("DOMContentLoaded", () => {
     async function loadPage(pageName, pageTitle) {
         try {
             // Použijeme fetch API pro načtení obsahu souboru
-            const response = await fetch(`${pageName}.html`);
+            const response = await fetch(`pages/${pageName}.html`);
             
-            // Zkontrolujeme, zda se soubor podařilo načíst
+            // Kontrola, zda se soubor podařilo načíst
             if (!response.ok) {
-                throw new Error(`Stránka ${pageName}.html nenalezena.`);
+                throw new Error(`Stránka pages/${pageName}.html nenalezena.`);
             }
             
             const content = await response.text();
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } catch (error) {
             console.error('Chyba při načítání obsahu:', error);
-            contentArea.innerHTML = `<p>Obsah se nepodařilo načíst. Zkontrolujte konzoli (F12) pro více detailů.</p>`;
+            contentArea.innerHTML = `<p>Obsah se nepodařilo načíst. F12 pro více info.</p>`;
             topbarTitle.textContent = 'Chyba';
         }
     }
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const pageName = link.dataset.page;
             const pageTitle = link.dataset.title;
             
-            // Načteme stránku
+            // Načtení stránky
             loadPage(pageName, pageTitle);
 
             // Aktualizace aktivní třídy v menu
