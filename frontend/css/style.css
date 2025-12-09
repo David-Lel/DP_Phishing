@@ -14,7 +14,7 @@
     --color-sidebar-light: #2c3a4e;
 
     --nav-height: 4.5rem;
-    --sidebar-width-closed: 5rem;
+    --sidebar-width-closed: 4rem;
     --sidebar-width-open: 16rem;
 
     --card-border-radius: 8px;
@@ -68,7 +68,7 @@ nav.navbar {
     top: 0;
     left: 0;
     z-index: 1000;
-    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
 }
 
 nav.navbar .nav-left {
@@ -79,7 +79,7 @@ nav.navbar .nav-left {
 
 .hamburger {
     cursor: pointer;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     width: 2.5rem;
@@ -163,7 +163,7 @@ aside {
 aside .sidebar-nav {
     display: flex;
     flex-direction: column;
-    margin-top: 1.5rem;
+    /*margin-top: 1.5rem;*/
 }
 
 aside .sidebar-nav a,
@@ -174,7 +174,7 @@ aside .sidebar-nav .nav-group-title {
     height: 3.5rem;
     gap: 1rem;
     position: relative;
-    padding-left: 1.7rem;
+    padding-left: 1.2rem;
     transition: var(--transition);
     overflow: hidden;
 }
@@ -230,7 +230,7 @@ aside .sidebar-nav .expand-icon {
 
 /*bez aside by to přebilo pravidlo o něco výše, kde se celému sidebaru anstavuje padding-left*/
 aside .sidebar-nav .submenu a {
-    padding-left: 3.5rem; /* Zkus 4rem, 5rem... podle vkusu */
+    padding-left: 2rem; 
 }
 
 
