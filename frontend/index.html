@@ -3,23 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="assets/images/favicon2.png">
+    <link rel="icon" type="image/png" href="assets/images/favicon2.png"> 
     <title>Phishing Simulator</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <aside class="sidebar">
-            <div class="sidebar-top">
-                <a href="#" class="logo">
-                    <h2>Crytur<span>Phishing</span></h2>
-                </a>
-                <div class="close" id="close-btn">
-                    <span class="material-icons-sharp">close</span>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="hamburger" id="menu-btn">
+                <span class="material-icons-sharp">menu</span>
+            </div>
+            <a href="#" class="logo">
+                <h2>Crytur<span>Phishing</span></h2>
+            </a>
+        </div>
+
+        <div class="nav-right">
+            <div class="profile-area">
+                <div class="profile-info">
+                    <p>např. it@crytur.cz</p>
+                    <small class="text-muted">Administrátor</small>
+                </div>
+                <div class="profile-photo">
+                    <span class="material-icons-sharp">admin_panel_settings</span>
                 </div>
             </div>
+        </div>
+    </nav>
 
+    <div class="container">
+        
+        <aside class="sidebar">
             <nav class="sidebar-nav">
                 <a href="#" class="nav-link active" data-page="dashboard" data-title="Dashboard">
                     <span class="material-icons-sharp">grid_view</span>
@@ -58,18 +74,16 @@
                 </a>
             </nav>
         </aside>
+
         <main>
             <div class="topbar">
-                <div class="hamburger" id="menu-btn">
-                    <span class="material-icons-sharp">menu</span>
-                </div>
                 <h1 id="topbar-title">Dashboard</h1> 
             </div>
 
             <div class="content" id="main-content">
                 </div>
         </main>
-        </div>
+    </div>
 
     <script src="js/script.js"></script>
 </body>

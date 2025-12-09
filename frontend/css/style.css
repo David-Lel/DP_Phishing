@@ -1,22 +1,24 @@
-/* Základní nastavení a proměnné */
+/* =========================================
+   1. ZÁKLADNÍ NASTAVENÍ
+   ========================================= */
 :root {
-    --color-primary: #007bff; /* Modrá */
-    --color-danger: #dc3545; /* Červená */
-    --color-success: #28a745; /* Zelená */
+    --color-primary: #007bff;
+    --color-danger: #dc3545;
+    --color-success: #28a745;
     --color-white: #fff;
     --color-light: #f8f9fa;
     --color-dark: #343a40;
     --color-grey: #6c757d;
-    --color-bg: #f4f5f7; /* Barva pozadí */
-    --color-sidebar: #1a222f; /* Tmavá pro sidebar */
+    --color-bg: #f4f5f7;
+    --color-sidebar: #1a222f;
     --color-sidebar-light: #2c3a4e;
 
+    --nav-height: 4.5rem;
+    --sidebar-width-closed: 5rem;
+    --sidebar-width-open: 16rem;
+
     --card-border-radius: 8px;
-    --border-radius-1: 0.4rem;
-    --border-radius-2: 0.8rem;
-
     --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
     --transition: all 300ms ease;
 }
 
@@ -34,15 +36,12 @@ body {
     font-family: Arial, sans-serif;
     background: var(--color-bg);
     color: var(--color-dark);
+    overflow-x: hidden;
 }
 
-.container {
-    display: grid;
-    width: 96%;
-    margin: 0 auto;
-    gap: 1.8rem;
-    /* Dva sloupce: sidebar a main content */
-    grid-template-columns: 16rem auto; 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 h1 { font-size: 2.2rem; }
@@ -50,49 +49,121 @@ h2 { font-size: 1.4rem; }
 h3 { font-size: 0.95rem; }
 h4 { font-size: 0.8rem; }
 
-a {
-    color: var(--color-primary);
-    transition: var(--transition);
-}
-a:hover {
-    color: #0056b3;
-}
+a { color: var(--color-primary); transition: var(--transition); }
+a:hover { color: #0056b3; }
 
-/* ===== SIDEBAR ===== */
-aside {
-    height: 100vh;
+
+/* =========================================
+   2. NAVBAR
+   ========================================= */
+nav.navbar {
+    width: 100%;
+    height: var(--nav-height);
     background: var(--color-sidebar);
-    color: var(--color-light);
-    position: sticky;
-    top: 0;
-}
-
-aside .sidebar-top {
+    padding: 0 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 1.4rem;
-    padding: 0 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.15);
 }
 
-aside .logo {
+nav.navbar .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.hamburger {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+.hamburger:hover {
+    background: var(--color-sidebar-light);
+}
+.hamburger span {
+    font-size: 2rem;
     color: var(--color-white);
 }
-aside .logo span {
+
+nav.navbar .logo h2 {
+    color: var(--color-white);
+    margin-bottom: 0;
+}
+nav.navbar .logo span {
     color: var(--color-primary);
 }
 
-aside .close {
-    display: none; /* Zobrazí se jen na mobilu */
+nav.navbar .nav-right .profile-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: right;
     cursor: pointer;
+}
+
+nav.navbar .profile-info p {
+    color: var(--color-light);
+    font-size: 1rem;
+    text-align: right;        /* Zarovnání doprava k fotce */
+    line-height: 1.2;         /* Menší řádkování, ať jsou texty blíž k sobě */
+}
+
+/* 2. Řádek s rolí (Administrátor) */
+nav.navbar .profile-info small {
+    color: var(--color-light);  /* Šedá barva pro menší důležitost */
+    font-size: 0.75rem;       /* Menší písmo */
+    display: block;           /* Aby byl text na novém řádku */
+    text-align: right;        /* Zarovnání doprava */
+    margin-top: 2px;
+}
+
+
+nav.navbar .profile-photo span {
+    font-size: 2.8rem; /* Původně dědilo menší velikost, teď ji zvětšíme */
+    color: var(--color-light); /* Ujistíme se, že je tmavá */
+}
+
+/* =========================================
+   3. SIDEBAR
+   ========================================= */
+.container {
+    margin-top: var(--nav-height);
+    position: relative;
+}
+
+aside {
+    height: calc(100vh - var(--nav-height));
+    width: var(--sidebar-width-closed);
+    position: fixed;
+    left: 0;
+    top: var(--nav-height);
+    background: var(--color-sidebar);
+    color: var(--color-light);
+    overflow-x: hidden;
+    transition: var(--transition);
+    border-right: 1px solid rgba(0,0,0,0.1);
+    z-index: 900;
+}
+
+/* OTEVŘENÝ STAV */
+.container.expanded-sidebar aside {
+    width: var(--sidebar-width-open);
 }
 
 aside .sidebar-nav {
     display: flex;
     flex-direction: column;
-    height: 86vh;
-    position: relative;
-    top: 3rem;
+    margin-top: 1.5rem;
 }
 
 aside .sidebar-nav a,
@@ -100,9 +171,12 @@ aside .sidebar-nav .nav-group-title {
     display: flex;
     align-items: center;
     color: var(--color-light);
+    height: 3.5rem;
     gap: 1rem;
-    padding: 1rem 1.5rem;
+    position: relative;
+    padding-left: 1.7rem;
     transition: var(--transition);
+    overflow: hidden;
 }
 
 aside .sidebar-nav a:hover,
@@ -115,104 +189,74 @@ aside .sidebar-nav a.active {
     background: var(--color-primary);
     color: var(--color-white);
 }
+aside .sidebar-nav a.active::before {
+    content: '';
+    width: 5px;
+    height: 100%;
+    background: var(--color-success);
+    position: absolute;
+    left: 0; top: 0;
+}
 
 aside .sidebar-nav .material-icons-sharp {
     font-size: 1.4rem;
+    min-width: 1.4rem;
 }
 
-/* Podmenu (Templates) */
-.nav-group-title {
-    cursor: pointer;
+/* Skrývání textů */
+aside .sidebar-nav h3, 
+aside .sidebar-nav h4,
+aside .sidebar-nav .expand-icon {
+    display: none;
 }
-.nav-group-title .expand-icon {
-    margin-left: auto;
+
+/* Zobrazení textů v otevřeném stavu */
+.container.expanded-sidebar aside .sidebar-nav h3,
+.container.expanded-sidebar aside .sidebar-nav h4,
+.container.expanded-sidebar aside .sidebar-nav .expand-icon {
+    display: block;
+    white-space: nowrap;
+    animation: fadeIn 300ms ease;
+}
+
+/* Podmenu */
+.nav-group-title { cursor: pointer; }
+.nav-group-title .expand-icon { margin-left: auto; margin-right: 1rem; transition: var(--transition); }
+.nav-group.open .expand-icon { transform: rotate(180deg); }
+
+.submenu { display: none; background: #111822; }
+.nav-group.open .submenu { display: block; }
+.container:not(.expanded-sidebar) .submenu { display: none !important; }
+
+/*bez aside by to přebilo pravidlo o něco výše, kde se celému sidebaru anstavuje padding-left*/
+aside .sidebar-nav .submenu a {
+    padding-left: 3.5rem; /* Zkus 4rem, 5rem... podle vkusu */
+}
+
+
+/* =========================================
+   4. HLAVNÍ OBSAH
+   ========================================= */
+main {
+    margin-left: var(--sidebar-width-closed);
+    padding: 1.5rem 2.5rem;
+    background: var(--color-bg);
+    min-height: calc(100vh - var(--nav-height));
     transition: var(--transition);
 }
-.nav-group.open .expand-icon {
-    transform: rotate(180deg);
-}
 
-.submenu {
-    display: none; /* Skryté defaultně */
-    padding-left: 2rem;
-    background: #111822; /* Trochu tmavší pozadí */
-}
-.nav-group.open .submenu {
-    display: block; /* Zobrazí se po kliku */
-}
-.submenu a {
-    padding-top: 0.8rem;
-    padding-bottom: 0.8rem;
-}
-.submenu a.active {
-    background: var(--color-primary); /* Jiná aktivní barva? Může být stejná */
-}
-
-/* ===== MAIN CONTENT & TOPBAR ===== */
-main {
-    width: 100%;
+.container.expanded-sidebar main {
+    margin-left: var(--sidebar-width-open);
 }
 
 main .topbar {
-    display: flex;
-    align-items: center;
-    padding: 1rem 0;
-    gap: 2rem;
-    background: var(--color-bg);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-main .topbar .hamburger {
-    display: none; /* Zobrazí se jen na mobilu */
-    cursor: pointer;
-    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
 }
 
 main .content {
-    margin-top: 1rem;
     background: var(--color-white);
     padding: 1.5rem;
     border-radius: var(--card-border-radius);
     box-shadow: var(--box-shadow);
-    min-height: 75vh;
-}
-
-/* ===== RESPONZIVITA (Mobilní zobrazení) ===== */
-@media screen and (max-width: 768px) {
-    .container {
-        width: 100%;
-        grid-template-columns: 1fr; /* Jen jeden sloupec */
-        padding: 0 1rem;
-    }
-
-    aside {
-        position: fixed;
-        left: -100%; /* Skrytý mimo obrazovku */
-        top: 0;
-        width: 18rem;
-        z-index: 100;
-        height: 100vh;
-        background: var(--color-sidebar);
-        padding-right: 1rem;
-        transition: var(--transition);
-        
-        /* Zobrazí se, když má třídu 'show' */
-        &.show {
-            left: 0;
-        }
-    }
-
-    aside .sidebar-top {
-        padding: 1rem 1.5rem;
-    }
-
-    aside .close {
-        display: inline-block;
-    }
-
-    main .topbar .hamburger {
-        display: inline-block;
-    }
+    min-height: 60vh;
 }
