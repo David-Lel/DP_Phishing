@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/images/favicon2.png">
+    <title>Phishing Simulator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <a href="#" class="logo">
+                    <h2>Crytur<span>Phishing</span></h2>
+                </a>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">close</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-link active" data-page="dashboard" data-title="Dashboard">
+                    <span class="material-icons-sharp">grid_view</span>
+                    <h3>Přehled</h3>
+                </a>
+                <a href="#" class="nav-link" data-page="campaigns" data-title="Campaigns">
+                    <span class="material-icons-sharp">campaign</span>
+                    <h3>Kampaně</h3>
+                </a>
+                
+                <div class="nav-group">
+                    <div class="nav-group-title">
+                        <span class="material-icons-sharp">description</span>
+                        <h3>Šablony</h3>
+                        <span class="material-icons-sharp expand-icon">expand_more</span>
+                    </div>
+                    <div class="submenu">
+                        <a href="#" class="nav-link" data-page="email-templates" data-title="Email Templates">
+                            <span class="material-icons-sharp">email</span>
+                            <h4>Emailové šablony</h4>
+                        </a>
+                        <a href="#" class="nav-link" data-page="web-templates" data-title="Web Templates">
+                            <span class="material-icons-sharp">public</span>
+                            <h4>Webové šablony</h4>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="#" class="nav-link" data-page="settings" data-title="Settings">
+                    <span class="material-icons-sharp">settings</span>
+                    <h3>Nastavení</h3>
+                </a>
+                <a href="#" class="nav-link" data-page="help" data-title="Help">
+                    <span class="material-icons-sharp">help_outline</span>
+                    <h3>Nápověda</h3>
+                </a>
+            </nav>
+        </aside>
+        <main>
+            <div class="topbar">
+                <div class="hamburger" id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </div>
+                <h1 id="topbar-title">Dashboard</h1> 
+            </div>
+
+            <div class="content" id="main-content">
+                </div>
+        </main>
+        </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
